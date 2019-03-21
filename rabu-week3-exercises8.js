@@ -16,40 +16,18 @@ function tukarBesarKecil(kalimat) {
     var hasil = ''
     
     for(i = 0; i< length; i++){
+        var found = false
         for(j = 0; j<abc.length; j++){
             if(kalimat[i] === abc[j]){
+                found = true
                 hasil = hasil + abc2[j]
             }else if(kalimat[i] === abc2[j]){
+                found = true
                 hasil = hasil + abc[j]
             }
         }
-
-        if(kalimat[i] === '0'){
-            hasil = hasil + '0'
-        }else if(kalimat[i] === '1'){
-            hasil = hasil + '1'
-        }else if(kalimat[i] === '2'){
-            hasil = hasil + '2'
-        }else if(kalimat[i] === '3'){
-            hasil = hasil + '3'
-        }else if(kalimat[i] === '4'){
-            hasil = hasil + '4'
-        }else if(kalimat[i] === '5'){
-            hasil = hasil + '5'
-        }else if(kalimat[i] === '6'){
-            hasil = hasil + '6'
-        }else if(kalimat[i] === '7'){
-            hasil = hasil + '7'
-        }else if(kalimat[i] === '8'){
-            hasil = hasil + '8'
-        }else if(kalimat[i] === '9'){
-            hasil = hasil + '9'
-        }else if(kalimat[i] === ' '){
-            hasil = hasil + ' '
-        }else if(kalimat[i] === '-'){
-            hasil = hasil + '-'
-        }else if(kalimat[i] === '!'){
-            hasil = hasil + '!'
+        if(found === false){
+            hasil = hasil + kalimat[i]
         }
     }
     return hasil
