@@ -35,10 +35,12 @@ function naikAngkot(arrPenumpang) {
             jarak = (ruteHenti-ruteAwal)
             bayar = 2000 * jarak
         }
-        Obj.naikDari = arrPenumpang[i][1]
-        Obj.tujuan = arrPenumpang[i][2]
-        Obj.bayar = bayar
-        arr.push(Obj)
+        arr.push(Obj = {
+            penumpang: arrPenumpang[i][0],
+            naikDari: arrPenumpang[i][1],
+            tujuan: arrPenumpang[i][2],
+            bayar: bayar
+        })
     }
     return arr
   }
