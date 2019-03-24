@@ -32,7 +32,7 @@ function naikAngkot(arrPenumpang) {
             if(arrPenumpang[i][2] === rute[j]){
                 ruteHenti=j
             }
-            jarak = (ruteHenti-ruteAwal)
+            jarak = Math.abs(ruteHenti-ruteAwal)
             bayar = 2000 * jarak
         }
         arr.push(Obj = {
