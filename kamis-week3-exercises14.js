@@ -16,15 +16,14 @@ function naikAngkot(arrPenumpang) {
     rute = ['A', 'B', 'C', 'D', 'E', 'F'];
     //your code here
     //= Obj[0][0] // arrPenumpang[1][0]
-    var ruteAwal =0
+    var ruteAwal
     //= Obj[0][1] // arrPenumpang[1][1]
-    var ruteHenti =0
+    var ruteHenti
     //= Obj[0][2] // arrPenumpang[1][2]
     var Obj={}
     var arr =[]
     var jarak =0
     for(i = 0; i < arrPenumpang.length; i++){
-        Obj.penumpang = arrPenumpang[i][0]
         for(j=0; j<rute.length; j++){
             if(arrPenumpang[i][1] === rute[j]){
                 ruteAwal = j
@@ -41,6 +40,11 @@ function naikAngkot(arrPenumpang) {
             tujuan: arrPenumpang[i][2],
             bayar: bayar
         })
+        // Obj.penumpang = arrPenumpang[i][0]
+        // Obj.naikDari = arrPenumpang[i][1]
+        // Obj.tujuan = arrPenumpang[i][2]
+        // Obj.bayar = bayar
+        // arr.push(Obj)
     }
     return arr
   }
