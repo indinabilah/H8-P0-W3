@@ -1,3 +1,4 @@
+
 /**
  * Toko X
  * SALE
@@ -27,17 +28,8 @@ function countProfit(shoppers) {
     // return shoppers[0].name
     // define one by one
     // buyer
-    var namaB = [] 
-    var namaS = []
-    var namaSw = []
-    //jumlah product
-    var lOB =0
-    var lOS =0
-    var lOSw =0 
-    //stock product
-    var amountSepatu = listBarang[0][2]
-    var amountBaju = listBarang[1][2]
-    var amountSweater = listBarang[2][2]
+    var arrObj = []
+    var Obj = {}
 
 
     
@@ -45,44 +37,34 @@ function countProfit(shoppers) {
     if(shoppers.length === 0){
         return []
     }
-
-    for(i=0;i<shoppers.length;i++){
-        if(shoppers[i].product === listBarang[0][0] && shoppers[i].amount <= amountSepatu){
-            namaS.push(shoppers[i].name)
-            lOS += shoppers[i].amount
-            amountSepatu-=lOS
+    for(i = 0; i<listBarang.length; i++){
+        if(Obj[listBarang[i][0]] === undefined ){
+            Obj[listBarang[i][0]] = {
+                product: listBarang[i][0],
+                shoppers: [],
+                leftOver: listBarang[i][2],
+                totalProfit: 0
+            }
         }
-        if(shoppers[i].product === listBarang[1][0] && shoppers[i].amount <= amountBaju){
-            namaB.push(shoppers[i].name)
-            lOB += shoppers[i].amount
-            amountBaju-=lOB
-        }
-        if(shoppers[i].product === listBarang[2][0] && shoppers[i].amount <= amountSweater){
-            namaSw.push(shoppers[i].name)
-            lOSw += shoppers[i].amount
-            amountSweater-=lOSw
+        for(j = 0; j<shoppers.length; j++){
+            if(shoppers[j].product === listBarang[i][0] && shoppers[j].amount <= listBarang[i][2]){
+                listBarang[i][2] -= shoppers[j].amount
+                Obj[listBarang[i][0]].shoppers.push(shoppers[j].name)
+                Obj[listBarang[i][0]].leftOver -= shoppers[j].amount
+                Obj[listBarang[i][0]].totalProfit += listBarang[i][1] * shoppers[j].amount
+            }
         }
     }
-    var Obj = [
-        { product: listBarang[0][0],
-        shoppers: namaS,
-        leftOver: listBarang[0][2] - lOS,
-        totalProfit: listBarang[0][1] * lOS},
-        { product: listBarang[1][0],
-        shoppers: namaB,
-        leftOver: listBarang[1][2] - lOB,
-        totalProfit: listBarang[1][1] * lOB},
-        { product: listBarang[2][0],
-        shoppers: namaSw,
-        leftOver: listBarang[2][2] - lOSw,
-        totalProfit: listBarang[2][1] * lOSw},
-    ]
-    return Obj
+    for(var x in Obj){
+        arrObj.push(Obj[x])
+    }
+    return arrObj
     // return lOS
   }
   
   // TEST CASES
-  console.log(countProfit([{name: 'Windi', product: 'Sepatu Stacattu', amount: 2},{name: 'Vanessa', product: 'Sepatu Stacattu', amount: 3}, {name: 'Rani', product: 'Sweater Uniklooh', amount: 2}]));
+  console.log(countProfit([{name: 'Windi', product: 'Sepatu Stacattu', amount: 2},{name: 'Vanessa', product: 'Sepatu Stacattu', amount: 3}, 
+  {name: 'Rani', product: 'Sweater Uniklooh', amount: 2}]));
  /**
   * [ { 
   * product: 'Sepatu Stacattu',
@@ -150,6 +132,38 @@ function countProfit(shoppers) {
 
 
 /**
+ * gaboleh hardcase tp simpen aja hahaha
+ * for(i=0;i<shoppers.length;i++){
+        if(shoppers[i].product === listBarang[0][0] && shoppers[i].amount <= amountSepatu){
+            namaS.push(shoppers[i].name)
+            lOS += shoppers[i].amount
+            amountSepatu-=lOS
+        }
+        if(shoppers[i].product === listBarang[1][0] && shoppers[i].amount <= amountBaju){
+            namaB.push(shoppers[i].name)
+            lOB += shoppers[i].amount
+            amountBaju-=lOB
+        }
+        if(shoppers[i].product === listBarang[2][0] && shoppers[i].amount <= amountSweater){
+            namaSw.push(shoppers[i].name)
+            lOSw += shoppers[i].amount
+            amountSweater-=lOSw
+        }
+    }
+    var Obj = [
+        { product: listBarang[0][0],
+        shoppers: namaS,
+        leftOver: listBarang[0][2] - lOS,
+        totalProfit: listBarang[0][1] * lOS},
+        { product: listBarang[1][0],
+        shoppers: namaB,
+        leftOver: listBarang[1][2] - lOB,
+        totalProfit: listBarang[1][1] * lOB},
+        { product: listBarang[2][0],
+        shoppers: namaSw,
+        leftOver: listBarang[2][2] - lOSw,
+        totalProfit: listBarang[2][1] * lOSw},
+    ]
  * produk salah baca 
  * hadu
  * for(i=0;i<shoppers.length;i++){
